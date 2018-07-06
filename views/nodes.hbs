@@ -1,0 +1,163 @@
+<!-- Main content -->
+<section class="content-header">
+    <div class="pull-right">
+        <a href="/nodes" class="btn btn-social btn-default">
+            <i class="fa fa-fw fa-refresh"></i> Refresh List</a>
+        <a href="/nodes_form" class="btn btn-social btn-success">
+            <i class="fa fa-fw fa-plus"></i> Add New</a>
+    </div>
+</section>
+
+<hr>
+
+<section class="content">
+    <div class="box box-success">
+        <div class="box-header with-border">
+            <h3 class="box-title">
+                <i class="fa fa-fw fa-cubes"></i> Nodes Records</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-striped table-bordered table-hover" id="tblNodes" style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <th>Node Name</th>
+                                <th>Date Part (Hour)</th>
+                                <th>Remarks</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each nodeList}}
+                            <tr>
+                                <td>{{this.node_name}}</td>
+                                <td>{{this.str_date_time}}</td>
+                                <td>{{this.remarks}}</td>
+                                <td align="center">
+                                    <button type="button" class="btn btn-warning" title="Update" onclick="updateNode('{{this.id}}')">
+                                        <i class="fa fa-fw fa-pencil"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-danger" title="Delete" onclick="deleteNode('{{this.id}}')">
+                                        <i class=" fa fa-fw fa-trash "></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer">
+            <div class="pull-right">
+                <form action="/nodes_export" method="POST">
+                    <button type="submit" class="btn btn-social btn-danger">
+                        <i class="fa fa-fw fa-download"></i>Export to CSV</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /.content -->
+
+<!-- Update Nodes Modal -->
+<div class="modal fade" id="updateNodeModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header ">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">
+                    <i class="fa fa-fw fa-cubes"></i> Update Node Item</h4>
+            </div>
+            <div class="modal-body">
+                <form action="/update_node" method="POST">
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-offset-2 col-md-8">
+                                <input type="hidden" id="hidden_node_item_id" name="hidden_node_item_id">
+                                <div class="form-group">
+                                    <label>Node Name: </label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-fw fa-map-marker"></i>
+                                        </div>
+                                        <select class="form-control" id="node_name" name="node_name" style="width:100%" required>
+                                            <option>Manila</option>
+                                            <option>Cebu</option>
+                                            <option>Ho Chi Minh</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- /.form-group -->
+                                <div class="form-group">
+                                    <label>Date and time:</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-fw fa-clock-o"></i>
+                                        </div>
+                                        <input type="text" class="form-control pull-right" id="node_date_time" name="date_part" required>
+                                    </div>
+                                </div>
+                                <!-- /.form-group -->
+                                <div class="form-group">
+                                    <label>Remarks</label>
+                                    <textarea class="form-control" rows="3" placeholder="Enter ... " style="resize: none;" id="node_remarks" name="remarks" maxlength="250"
+                                        required></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.row -->
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                <input type="submit" class="btn btn-success" value="Update">
+            </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<!-- Delete Nodes Modal -->
+<div class="modal fade" id="deleteNodeModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header ">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">
+                    <i class="fa fa-fw fa-cubes"></i> Delete Node Item</h4>
+            </div>
+            <div class="modal-body">
+                <form action="/delete_node" method="POST">
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="row">
+                            <input type="hidden" id="hidden_node_item_id_delete" name="hidden_node_item_id">
+                            <center>
+                                <p>Are you sure you want to delete this item?</p>
+                            </center>
+                        </div>
+                        <!-- /.row -->
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                <input type="submit" class="btn btn-danger" value="Delete">
+            </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

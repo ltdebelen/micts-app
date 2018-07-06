@@ -1,0 +1,63 @@
+<!-- Main content -->
+<section class="content">
+    <div class="col-md-offset-2 col-md-8">
+        <div class="box box-success">
+            <div class="box-header with-border">
+                <h3 class="box-title">
+                    <i class="{{form_icon_class}}"></i> {{form_name}}</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-box-tool" data-widget="remove">
+                        <i class="fa fa-remove"></i>
+                    </button>
+                </div>
+            </div>
+            <form action="{{form_action}}" method="POST">
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-offset-2 col-md-8">
+                            <div class="form-group">
+                                <label>{{form_input_label}}: </label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-fw fa-map-marker"></i>
+                                    </div>
+                                    <select class="form-control formSelect" name="{{form_select}}" multiple="multiple" required>
+                                        <option>Manila</option>
+                                        <option>Cebu</option>
+                                        <option>Ho Chi Minh</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- /.form-group -->
+                            <div class="form-group">
+                                <label>Date and time range:</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-fw fa-clock-o"></i>
+                                    </div>
+                                    <input type="text" class="form-control pull-right date_time" name="date_time" required>
+                                </div>
+                            </div>
+                            <!-- /.form-group -->
+                            <div class="form-group">
+                                <label>Remarks</label>
+                                <textarea class="form-control" rows="3" placeholder="Enter ..." style="resize: none;" name="remarks" maxlength="250" required></textarea>
+                            </div>
+
+                            <input type="submit" value="Submit" class="btn btn-success pull-right">
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                </div>
+            </form>
+            <!-- /.box-body -->
+            <div class="box-footer">
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /.content -->
